@@ -10,7 +10,7 @@
 ## Follow the below steps to run the Application (WIP)
 
 1. Fork the repository
-2. Clone the repository locally  
+2. Clone the repository on your system
 
 **Coming soon...**  
 
