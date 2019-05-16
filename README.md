@@ -1,12 +1,9 @@
-# marketplace
-Marketplace Solution
-Bosch has been a household name for the past 130 years in more than 100 countries. Bosch is known for its values, quality and more importantly the vision of "Invented for Life". At Bosch, we believe in developing innovative solutions to accelerate the pace of technological progress. We are envisioning a futuristic solution where trading with trust will happen over the network.
-
+# Marketplace Solution
 Today, when the farmers have to sell cattle, they usually sell them to the neighbor farmers or sell it to the cattle traders. While selling, the farmers do not get the best price. From buyers' perspective, the buyers also don't know the historical records of cow like when it was born, when it gave birth to the last calf, the periodical health record certificates of the cow etc. These information should be captured in an immutable fashion so that the buyers can have the trust in the system. The dairy companies who also purchase the milk from the farmers are not aware about the cow from which it got the milk, the health certificate of the cow, the breed of the cow etc. This solution would address the challenges faced in the cattle trading market today.
 
-Problem Statement:
-You need to create a marketplace solution based on distributed ledger technology to sell or purchase cattle and cow milk. The stakeholders involved in the marketplace solution are as mentioned below - 
-(1) Farmers - Seller / Buyer of cattle, 
+## Problem Statement:
+You need to create a marketplace solution based on distributed ledger technology to sell or purchase cattle and cow milk. The stakeholders involved in the marketplace solution are as mentioned below -   
+(1) Farmers - Seller / Buyer of cattle,  
 (2) Dairy Companies - Buyer of the cow milk from farmers,
 (3) Veterinarians - Confirms the health certificate of the cattle uploaded by farmers, 
 (4) Government - Provides digital identity of the farmers with digital signature.
