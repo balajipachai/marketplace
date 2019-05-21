@@ -2,6 +2,7 @@
 * Contract registers the cattle against ERC721 Token.
 * As ERC721 are NFT's, thus, they are the ideal choice for representing Cattle.
 */
+pragma solidity 0.5.0;
 import "./openZeppelin/token/ERC721/ERC721Burnable.sol";
 import "./openZeppelin/token/ERC721/ERC721Enumerable.sol";
 import "./openZeppelin/token/ERC721/ERC721MetadataMintable.sol";
@@ -20,30 +21,37 @@ contract Cattle is ERC721Burnable, ERC721Enumerable, ERC721MetadataMintable {
         require(msg.sender == super.ownerOf(cattleId), "CATTLE_OWNER_DO_NOT_MATCH");
         _;
     }
+
     /*
     * @dev Function that maps cattle with ERC721 Token.
+    * @param to address to whom the cattle belongs
+    * @param cattleDetails string hash of cattle details
     */
-    function mapCattleWithERC721(address to, string memory cattleDetails) public onlyMinter returns (bool) {
+    function cattleRegistration(address to, string memory cattleDetails) public onlyMinter returns (bool) {
         uint256 cattleId = totalSupply();
         return super.mintWithTokenURI(to, cattleId, cattleDetails);
     }
 
     /**
-    * TODO @balaji Add comments before committing the code
+    * @dev Function that gets the number of cattles a owner owns
+    * @param owner address Address of the owner
     */
     function getNoOfCattle(address owner) public view returns (uint256) {
-        return super.balanceOf();
+        return super.balanceOf(owner);
     }
 
     /**
-    * TODO @balaji Add comments before committing the code
+    * @dev Function that returns the owner of a specific cattle
+    * @param cattleId uint256 The cattle ID
     */
     function ownerOfCattle(uint256 cattleId) public view returns (address) {
         return super.ownerOf(cattleId);
     }
 
     /**
-    * TODO @balaji Add comments before committing the code
+    * @dev Function that approves the Auction contract to transfer cattle on behalf of the owner
+    * @param to address To is the Auction contract address
+    * @param cattleId uint256 The cattle ID
     */
     function approveAuctionContract(address to, uint256 cattleId) onlyCattleOwner(cattleId) public {
         require(to.isContract(), "TO_ADDRESS_IS_EOA");
@@ -51,16 +59,20 @@ contract Cattle is ERC721Burnable, ERC721Enumerable, ERC721MetadataMintable {
     }
 
     /**
-    * TODO @balaji Add comments before committing the code
+    * @dev Function that transfers cattle ownership
+    * @param oldOwner Cattle's old owner
+    * @param newOwner Cattle's new owner
+    * @param cattleId uint256 The cattle ID
     */
     function transferCattleOwnership(address oldOwner, address newOwner, uint256 cattleId) public {
         super.safeTransferFrom(oldOwner, newOwner, cattleId);
     }
 
     /**
-    * TODO @balaji Add comments before committing the code
+    * @dev Function that removes cattle registration
+    * @param cattleId uint256 The cattle ID
     */
-    function removeCattleMappingWithERC721(uint256 cattleId) public {
+    function removeCattleRegistration(uint256 cattleId) public {
         super.burn(cattleId);
     }
 }
