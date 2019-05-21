@@ -1,1 +1,0 @@
-Details about contracts that will be developed needs to be added.
