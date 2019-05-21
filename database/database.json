@@ -1,0 +1,19 @@
+{
+    "development": {
+        "host": "hostIP/localhost",
+        "user": "username",
+        "password": "password",
+        "database": "dbname",
+        "driver": "mysql",
+        "multipleStatements": true
+    },
+    "production": {
+    	"host": {"ENV": "hostIP/localhost"},
+        "user": {"ENV": "username"},
+        "password": {"ENV": "password"},
+        "database": {"ENV": "dbname"},
+        "driver": "mysql",
+        "multipleStatements": true
+    },
+    "sql-file" : true
+}
