@@ -18,7 +18,6 @@ const createToken = (data) => {
 			}
 			else {
 				resolve(token);
-
 			}
 		});
 		

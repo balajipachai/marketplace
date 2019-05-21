@@ -1,0 +1,14 @@
+{
+    "bcrypt": {
+        "saltRounds": 10
+    },
+    "blockchain": {
+        "unlockTime": 5,
+        "user": "",
+        "coinBasePassword":"",
+        "localBlockchain": "http://127.0.0.1:7545",
+        "rinkbeyAddress": "https://rinkeby.infura.io/v3/847f9906c6c942a2b069ad55a1e49c40",
+        "coinbaseAccount": "0xf6e312972eAdc08e1A2658fbdE2F18299C04E77d",
+        "gasPrice": 20000000000
+    }
+}
