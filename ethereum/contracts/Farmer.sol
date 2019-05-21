@@ -5,11 +5,12 @@
 pragma solidity 0.5.0;
 import "./Cattle.sol";
 import "./Auction.sol";
+import "./Government.sol";
 
 contract Farmer {
-    Cattle cattleContract;
-    Auction auctionContract;
-    //GOvernment contract
+    Cattle public cattleContract;
+    Auction public auctionContract;
+    Government public governmentContract;
 
     event LogCattleRegistration(address indexed owner, bytes32 indexed cattleDetails, uint256 timestamp);
     event LogSellCattle(address indexed owner, uint256 indexed basePrice, uint256 timestamp);
@@ -32,12 +33,13 @@ contract Farmer {
     * @dev Constructor function
     * @param _cattleContract The cattle contract address
     */
-    constructor(address _cattleContract, address _auctionContract) public {
+    constructor(address _cattleContract, address _auctionContract, address _governmentContract) public {
         require(_cattleContract != address(0), "CATTLE_CONTRACT_ADDRESS_IS_ZERO_ADDRESS");
         require(_auctionContract != address(0), "AUCTION_CONTRACT_ADDRESS_IS_ZERO_ADDRESS");
         cattleContract = Cattle(_cattleContract);
         auctionContract = Auction(_auctionContract);
-        //Set Government contract.sol address too over here
+        governmentContract = Government(_governmentContract);
+        GOV_ADDRESS = _governmentContract;
     }
 
     /**
@@ -48,14 +50,16 @@ contract Farmer {
     function registerCattle(address to, string memory cattleDetails) public {
         cattleContract.cattleRegistration(to, cattleDetails);
         //sent for verification by government
+        uint256 cattleId = cattleContract.getNoOfCattle(to);
+        isCattleVerifiedByGov[to][cattleId] = governmentContract.verifyCattle(cattleId);
         emit LogCattleRegistration(to, cattleDetails, block.timestamp);
     }
 
     /**
     * @dev Function that stores the verification status of the cattle by the government
     */
-    function setVerificationStatus () onlyGovernment public {
-        //add code
+    function setVerificationStatus (uint256 _cattleId) onlyGovernment public {
+        //Later on when actual verification flow will be implemented then add code
     }
 
     /**
