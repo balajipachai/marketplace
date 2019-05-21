@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node node_modules/db-migrate/bin/db-migrate up --migrations-dir ./database/migrations --config ./database/database.json && node ./bin/www",
+    "start": "node node_modules/db-migrate/bin/db-migrate up  && node ./bin/www",
     "compile": "solhint ./ethereum/contracts/**/*.sol && truffle compile",
     "migrate": "truffle migrate",
     "migrate_reset": "truffle migrate --reset"

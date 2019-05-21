@@ -1,9 +1,9 @@
 {
     "development": {
-        "host": "hostIP/localhost",
-        "user": "username",
-        "password": "password",
-        "database": "dbname",
+        "host": "127.0.0.1",
+        "user": "root",
+        "password": "India@1234",
+        "database": "marketplace1",
         "driver": "mysql",
         "multipleStatements": true
     },
