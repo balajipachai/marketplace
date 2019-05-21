@@ -1,1 +1,0 @@
-Details about tables that needs to be created will be added.

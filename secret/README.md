@@ -1,1 +1,0 @@
-#NEVER COMMIT THE .secret FILE
