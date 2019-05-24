@@ -6,9 +6,7 @@ const LoginController = require('../../controller/Login/user')
 router.post('/login', LoginController.login );
 
 /* GET home page. */
-router.post('/register', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
+router.post('/register', LoginController.register);
 
 
 module.exports = router;
