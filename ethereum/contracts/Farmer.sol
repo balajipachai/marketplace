@@ -2,7 +2,7 @@
 * Farmer contract.
 * A farmer can be a buyer or seller.
 */
-pragma solidity 0.5.0;
+pragma solidity 0.5.2;
 import "./Cattle.sol";
 import "./Auction.sol";
 import "./Government.sol";
@@ -11,23 +11,7 @@ contract Farmer {
     Cattle public cattleContract;
     Auction public auctionContract;
     Government public governmentContract;
-
-    event LogCattleRegistration(address indexed owner, bytes32 indexed cattleDetails, uint256 timestamp);
-    event LogSellCattle(address indexed owner, uint256 indexed basePrice, uint256 timestamp);
-    event LogBuyCattle(address indexed buyer, uint256 indexed price, uint256 timestamp);
-
-    mapping(address => mapping(uint256 => bool)) isCattleVerifiedByGov public;
-
-    modifier onlyCattleOwner(uint256 _cattleId) {
-        address cattleOwner = cattleContract.ownerOf(_cattleId);
-        require(msg.sender == cattleOwner, "NON_OWNER_CANNOT_SELL_CATTLE");
-        _;
-    }
-
-    modifier onlyGovernment() {
-        require(msg.sender == GOV_ADDRESS, "CALLER_IS_NOT_GOVERNMENT");
-        _;
-    }
+    address GOV_ADDRESS;
 
     /**
     * @dev Constructor function
@@ -40,6 +24,23 @@ contract Farmer {
         auctionContract = Auction(_auctionContract);
         governmentContract = Government(_governmentContract);
         GOV_ADDRESS = _governmentContract;
+    }
+
+    event LogCattleRegistration(address indexed owner, string cattleDetails, uint256 timestamp);
+    event LogSellCattle(address indexed owner, uint256 indexed basePrice, uint256 timestamp);
+    event LogBuyCattle(address indexed buyer, uint256 indexed price, uint256 timestamp);
+
+    mapping(address => mapping(uint256 => bool)) public isCattleVerifiedByGov;
+
+    modifier onlyCattleOwner(uint256 _cattleId) {
+        address cattleOwner = cattleContract.ownerOf(_cattleId);
+        require(msg.sender == cattleOwner, "NON_OWNER_CANNOT_SELL_CATTLE");
+        _;
+    }
+
+    modifier onlyGovernment() {
+        require(msg.sender == GOV_ADDRESS, "CALLER_IS_NOT_GOVERNMENT");
+        _;
     }
 
     /**
@@ -74,8 +75,8 @@ contract Farmer {
         uint256 auctionStartTimestamp,
         uint256 auctionEndTimestamp
     ) onlyCattleOwner(cattleId) public {
-        require(cattleContract._exists(cattleId), "CATTLE_ID_DO_NOT_EXISTS");
-        require(isCattleVerifiedByGov, "CATTLE_IS_NOT_VERIFIED_YET_BY_GOVERNMENT");
+        require(cattleContract.exists(cattleId), "CATTLE_ID_DO_NOT_EXISTS");
+        require(isCattleVerifiedByGov[msg.sender][cattleId], "CATTLE_IS_NOT_VERIFIED_YET_BY_GOVERNMENT");
         //Call auction contract to set auction for above cattleId
         auctionContract.auctionCattle(msg.sender, cattleId, basePrice, auctionStartTimestamp, auctionEndTimestamp);
         emit LogSellCattle(msg.sender, basePrice, block.timestamp);

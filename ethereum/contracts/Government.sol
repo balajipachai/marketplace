@@ -1,6 +1,7 @@
-pragma solidity 0.5.0;
+pragma solidity 0.5.2;
 
 import "./Farmer.sol";
+import "./openZeppelin/utils/Address.sol";
 
 contract Government {
     using Address for address;
@@ -17,14 +18,14 @@ contract Government {
     /**
     * TODO Add Documentation
     */
-    function verifyDairyCompany(string memory companyDetails) public returns (bool) {
+    function verifyDairyCompany(string memory companyDetails) public pure returns (bool) {
         return true;
     }
 
     /**
     * TODO Add Documentation
     */
-    function verifyCattle(uint256 _cattleId) public returns (bool) {
+    function verifyCattle(uint256 _cattleId) public pure returns (bool) {
         return true;
     }
 }

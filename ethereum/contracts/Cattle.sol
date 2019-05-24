@@ -2,7 +2,7 @@
 * Contract registers the cattle against ERC721 Token.
 * As ERC721 are NFT's, thus, they are the ideal choice for representing Cattle.
 */
-pragma solidity 0.5.0;
+pragma solidity 0.5.2;
 import "./openZeppelin/token/ERC721/ERC721Burnable.sol";
 import "./openZeppelin/token/ERC721/ERC721Enumerable.sol";
 import "./openZeppelin/token/ERC721/ERC721MetadataMintable.sol";
@@ -18,7 +18,7 @@ contract Cattle is ERC721Burnable, ERC721Enumerable, ERC721MetadataMintable {
     }
 
     modifier onlyCattleOwner(uint256 _cattleId) {
-        require(msg.sender == super.ownerOf(cattleId), "CATTLE_OWNER_DO_NOT_MATCH");
+        require(msg.sender == super.ownerOf(_cattleId), "CATTLE_OWNER_DO_NOT_MATCH");
         _;
     }
 
@@ -74,5 +74,12 @@ contract Cattle is ERC721Burnable, ERC721Enumerable, ERC721MetadataMintable {
     */
     function removeCattleRegistration(uint256 cattleId) public {
         super.burn(cattleId);
+    }
+
+    /**
+    * Function that checks whether the catlleId exist or not
+    */
+    function exists(uint256 _cattleId) external view returns (bool){
+        return super._exists(_cattleId);
     }
 }

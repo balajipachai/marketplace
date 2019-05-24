@@ -1,7 +1,7 @@
-pragma solidity 0.5.0;
+pragma solidity 0.5.2;
 
 contract Veterenarian {
-    function verifyCattleHealthCertificate(uint256 _cattleId) public view returns (bool){
+    function verifyCattleHealthCertificate(uint256 _cattleId) public pure returns (bool){
         return true;
     }
 }
