@@ -4,21 +4,26 @@ const uuidv4 = require('uuid/v4');
 const async = require('async');
 const bcrypt = require('bcrypt');
 const constants = require('../../constants.json').bcrypt;
+const farmerSql = require('../../migrations/query/farmer');
+const governmentSql = require('../../migrations/query/government');
+const diaryOrganisationSql = require('../../migrations/query/dairy');
+const veterinarianSql = require('../../migrations/query/veterinarian');
+
 
 /**
- * Function will return password of user if username exists in database
+ * Function will return password of user if email exists in database
  * @param {object} req 
  * @param {function} cb 
  */
 const getUserPassword = (req) => {
     return new Promise((resolve, reject) => {
         db.mysqlConnection().then((connection) => {
-            connection.query(userSql.getUserPassword, [req.body.username], function (error, results, fields) {
+            connection.query(userSql.getUserPassword, [req.body.email], function (error, results, fields) {
                 if (!error && results.length) {
                     resolve(results[0].password);
                 }
                 else {
-                    reject("Invalid Username");
+                    reject("Invalid Email");
                 }
             });
             connection.release();
@@ -46,22 +51,15 @@ const storeUserDetails = (req, account) => {
     return new Promise((resolve, reject) => {
         db.mysqlConnection().then(connection => {
             var data = {
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
                 id: uuidv4(),
-                username: req.body.username,
                 password: getEncryptedHash(req.body.password),
                 email: req.body.email,
-                gender: req.body.gender,
-                mobile_number: req.body.mobile_number,
-                type: req.body.userTypeId,
-                ethereum_account: account,
-                uat: new Date(),
-                cat: new Date()
+                userType: req.body.userTypeId,
+                ethereum_account: account
             }
             connection.query(userSql.insertIntoUser, data, function (error, results, fields) {
                 if (!error) {
-                    resolve(results);
+                    resolve(data.id);
                 }
                 else {
                     reject("Error in data insertion" + error);
@@ -75,18 +73,18 @@ const storeUserDetails = (req, account) => {
 }
 
 /**
- * Function to check whether username already used or not
- * @param {string} username 
+ * Function to check whether email already used or not
+ * @param {string} email 
  */
-const isDuplicateUsername = (username) => {
+const isDuplicateEmail = (email) => {
     return new Promise((resolve, reject) => {
         db.mysqlConnection().then(connection => {
-            connection.query(userSql.getUserCount, [username], function (error, results, fields) {
+            connection.query(userSql.getUserCount, [email], function (error, results, fields) {
                 if (!error) {
                     if (results[0].usercount) {
-                        resolve(true);
+                        reject("Email Already use");
                     } else {
-                        reject(false);
+                        resolve(true);
                     }
                 }
                 else {
@@ -111,7 +109,7 @@ const getEncryptedHash = (password) => {
 const getUserDetails = (req) => {
     return new Promise((resolve, reject) => {
         db.mysqlConnection().then(connection => {
-            connection.query(userSql.getUserData, [req.body.username], function (error, results) {
+            connection.query(userSql.getUserData, [req.body.email], function (error, results) {
                 if (!error) {
                     resolve(results);
                 }
@@ -127,6 +125,7 @@ const getUserDetails = (req) => {
 }
 
 
+
 //TODO
 //forgot password
 //change password
@@ -138,6 +137,6 @@ module.exports = {
     validatePassword,
     getUserPassword,
     storeUserDetails,
-    isDuplicateUsername,
+    isDuplicateEmail,
     getUserDetails
 }

@@ -2,7 +2,11 @@ const LoginModel = require('../../model/Login/user');
 const JWT = require('../../helper/jwt');
 const Response = require('../../helper/response');
 const ResponseMessage = require('../../apiResponses');
-const Ethereum = require('../../ethereum/lib/index')
+const Ethereum = require('../../ethereum/lib/index');
+const FarmerModel = require('../../model/Farmers/index');
+const DairyModel = require('../../model/DairyCompanies/index');
+const VeterinariansModel = require('../../model/Veterinarians/index');
+const GovernmentModel = require('../../model/Government/index');
 /**
  * Function to validate user
  * @param {*} req 
@@ -10,7 +14,7 @@ const Ethereum = require('../../ethereum/lib/index')
  */
 const login = (req, res) => {
     LoginModel.getUserPassword(req).then((password) => {
-        if(LoginModel.validatePassword(req.body.username, password)){
+        if(LoginModel.validatePassword(req.body.email, password)){
             return LoginModel.getUserDetails(req).then((user)=> {
                 return JWT.createToken(user).then((token)=> {
                     res.send(Response.success(ResponseMessage.Login.success, token));
@@ -31,15 +35,29 @@ const login = (req, res) => {
  * @param {*} res 
  */
 const register = (req, res) => {
-    LoginModel.isDuplicateUsername(req.body.username).then((valid)=> {
+    LoginModel.isDuplicateEmail(req.body.email).then((valid)=> {
         return Ethereum.createAccount(req.body).then((account)=> {
-            return LoginModel.storeUserDetails(req, account).then((result)=> {
-                res.send(Response.success(ResponseMessage.Login.success, token));
+            return LoginModel.storeUserDetails(req, account).then((id)=> {
+                switch(req.body.userTypeId) {
+                    case 1: return FarmerModel.addFarmer(req, id).then((result)=> {
+                        res.send(Response.success(ResponseMessage.Register.success));
+                    })
+                    case 2:return DairyModel.addDairyCompany(req, id).then((result)=> {
+                        res.send(Response.success(ResponseMessage.Register.success));
+                    })
+                    case 3:return VeterinariansModel.addVeterinarian(req, id).then((result)=> {
+                        res.send(Response.success(ResponseMessage.Register.success));
+                    })
+                    case 4:return GovernmentModel.addGovernment(req, id).then((result)=> {
+                        res.send(Response.success(ResponseMessage.Register.success));
+                    })
+                }
+                
             })
         })
             
     }).catch((error)=> {
-        res.send(Response.success(ResponseMessage.Login.success, token));
+        res.send(Response.failure(error));
     })
 }
 

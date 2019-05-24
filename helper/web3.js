@@ -1,6 +1,6 @@
 const Web3 = require("web3");
 const constants = require("../constants.json");
-const contractInstance = require("./contractInstance");
+// const contractInstance = require("./contractInstance");
 const log4js = require("log4js");
 const logger = log4js.getLogger("");
 
