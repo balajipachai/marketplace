@@ -28,4 +28,11 @@ contract Government {
     function verifyCattle(uint256 _cattleId) public pure returns (bool) {
         return true;
     }
+
+    /**
+    * TODO Add Documentation
+    */
+    function verifyMilk(uint256 _milkId) public pure returns (bool) {
+        return true;
+    }
 }
