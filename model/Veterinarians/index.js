@@ -10,16 +10,16 @@ const addVeterinarian = (req, id) => {
     return new Promise((resolve, reject) => {
         let data = {
             userId: id,
-            UID: req.body.UID,
+            UID: req.body.UIDVet,
             doctor_id: req.body.doctor_id,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             address_line: req.body.address_line,
             state: req.body.state,
             district: req.body.district,
-            village: req.body.village,
-            birth_date: req.body.birth_date,
-            contact: req.body.contact
+            village: req.body.villageVet,
+            birth_date: req.body.birth_date_vet,
+            contact: req.body.contactVet
         };
 
         db.mysqlConnection().then(connection => {

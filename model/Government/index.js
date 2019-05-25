@@ -13,7 +13,7 @@ const addGovernment = (req, id) => {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             gov_org_name: req.body.gov_org_name,
-            contact: req.body.contact,
+            contact: req.body.contactGov,
             address_line: req.body.address_line,
             state: req.body.state,
             district: req.body.district

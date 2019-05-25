@@ -86,34 +86,34 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $( "input" ).on( "click", function() {
-            var radioValue = $("input[name='userTypeId']:checked").val();
-            console.log("hiiiiiiiiiiiiii", radioValue, typeof(radioValue))
-            switch (radioValue) {
-                case "1":
-                    $("#farmer").show();
-                    $("#government").hide();
-                    $("#veteraniaran").hide();
-                    $("#dairy").hide();
-                    break;
-                case "2":
-                    $("#farmer").hide();
-                    $("#government").hide();
-                    $("#veteraniaran").hide();
-                    $("#dairy").show();
-                    break;
-                case "3":
-                    $("#farmer").hide();
-                    $("#government").hide();
-                    $("#veteraniaran").show();
-                    $("#dairy").hide();
-                    break;
-                case "4": $("#farmer").hide();
-                    $("#government").show();
-                    $("#veteraniaran").hide();
-                    $("#dairy").hide();
-                    break;
-            }
+            $("input").on("click", function () {
+                var radioValue = $("input[name='userTypeId']:checked").val();
+                console.log("hiiiiiiiiiiiiii", radioValue, typeof (radioValue))
+                switch (radioValue) {
+                    case "1":
+                        $("#farmer").show();
+                        $("#government").hide();
+                        $("#veteraniaran").hide();
+                        $("#dairy").hide();
+                        break;
+                    case "2":
+                        $("#farmer").hide();
+                        $("#government").hide();
+                        $("#veteraniaran").hide();
+                        $("#dairy").show();
+                        break;
+                    case "3":
+                        $("#farmer").hide();
+                        $("#government").hide();
+                        $("#veteraniaran").show();
+                        $("#dairy").hide();
+                        break;
+                    case "4": $("#farmer").hide();
+                        $("#government").show();
+                        $("#veteraniaran").hide();
+                        $("#dairy").hide();
+                        break;
+                }
             });
         });
     </script>
@@ -124,165 +124,107 @@
 
 
 
-    <form action="/user/login" method="POST">
+        <form action="/users/register" method="POST" novalidate>
+    <div class="container">
 
 
-        <div class="imgcontainer">
-            <img src="/img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
+            <div class="imgcontainer">
+                <img src="/img_avatar2.png" alt="Avatar" class="avatar">
+            </div>
 
 
-        <div class='radio'>
-            Farmer<input type="radio" name="userTypeId" value=1 checked>
-            Veteraniaran<input type="radio" name="userTypeId" value=3>
-            Dairy Company<input type="radio" name="userTypeId" value=2>
-            Government<input type="radio" name="userTypeId" value=4>
-        </div>
+            <div class='radio'>
+                Farmer<input type="radio" name="userTypeId" value=1 checked>
+                Veteraniaran<input type="radio" name="userTypeId" value=3>
+                Dairy Company<input type="radio" name="userTypeId" value=2>
+                Government<input type="radio" name="userTypeId" value=4>
+            </div>
 
-{{!-- Farmer --}}
-        <div class="container" id="farmer">
-            <label for="uid"><b>UID</b></label>
-            <input type="text" placeholder="Enter UID" name="UID" required>
+            <div>
 
-            <label for="firstName"><b>First Name: </b></label>
-            <input type="text" placeholder="Enter The First Name" name="first_name" required>
+                <label for="uname"><b>Email</b></label>
+                <input type="text" placeholder="Enter Username" name="email" required>
 
-            <label for="lastName"><b>Last Name: </b></label>
-            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
 
-            <label for="birthDate"><b>Birth Date: </b></label>
-            <input type="text" placeholder="Enter The Birth Date" name="birth_date" required>
+                <label for="firstName"><b>First Name: </b></label>
+                <input type="text" placeholder="Enter The First Name" name="first_name" required>
 
-            <label for="address"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The Address" name="address_line" required>
+                <label for="lastName"><b>Last Name: </b></label>
+                <input type="text" placeholder="Enter The Last Name" name="last_name" required>
 
-            <label for="state"><b>State: </b></label>
-            <input type="text" placeholder="Enter The State" name="state" required>
+                <label for="address"><b>Address: </b></label>
+                <input type="text" placeholder="Enter The Address" name="address_line" required>
 
-            <label for="district"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The District" name="district" required>
+                <label for="state"><b>State: </b></label>
+                <input type="text" placeholder="Enter The State" name="state" required>
 
-            <label for="village"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The Village" name="village" required>
+                <label for="district"><b>District: </b></label>
+                <input type="text" placeholder="Enter The District" name="district" required>
 
-            <label for="uname"><b>Email</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+            </div>
+            {{!-- Farmer --}}
+            <div id="farmer">
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+                <label for="village"><b>Village: </b></label>
+                <input type="text" placeholder="Enter The Village" name="villageFarmer" required>
 
-            <button type="submit">Register</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
-{{!-- Government --}}
-        <div class="container" id="government" hidden>
-    <label for="firstName"><b>First Name: </b></label>
-            <input type="text" placeholder="Enter The First Name" name="first_name" required>
-
-            <label for="lastName"><b>Last Name: </b></label>
-            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
-
-            <label for="govOrgName"><b>Gov Org Name: </b></label>
-            <input type="text" placeholder="Enter The Org Name" name="gov_org_name" required>
-
-            <label for="contact"><b>Contact: </b></label>
-            <input type="text" placeholder="Enter The Contact" name="contact" required>
-
-            <label for="address"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The Address" name="address_line" required>
-
-            <label for="state"><b>State: </b></label>
-            <input type="text" placeholder="Enter The State" name="state" required>
-
-            <label for="district"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The District" name="district" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit">Register</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
-{{!-- Dairy --}}
-        <div class="container" id="dairy" hidden>
-            <label for="orgName"><b>Org Name:</b></label>
-            <input type="text" placeholder="Enter Org Name: " name="org_name" required>
-
-            <label for="firstName"><b>First Name: </b></label>
-            <input type="text" placeholder="Enter The First Name" name="first_name" required>
-
-            <label for="lastName"><b>Last Name: </b></label>
-            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
-
-            <label for="address"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The Address" name="address_line" required>
-
-            <label for="state"><b>State: </b></label>
-            <input type="text" placeholder="Enter The State" name="state" required>
-
-            <label for="district"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The District" name="district" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit">Register</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
-{{!-- veteraniaran --}}
-        <div class="container" id="veteraniaran" hidden>
                 <label for="uid"><b>UID</b></label>
-            <input type="text" placeholder="Enter UID" name="UID" required>
+                <input type="text" placeholder="Enter UID" name="UIDFarmer" required>
 
-            <label for="firstName"><b>First Name: </b></label>
-            <input type="text" placeholder="Enter The First Name" name="first_name" required>
+                <label for="birthDate"><b>Birth Date: </b></label>
+                <input type="text" placeholder="Enter The Birth Date" name="birth_date_farmer" required>
 
-            <label for="lastName"><b>Last Name: </b></label>
-            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
+            </div>
+            {{!-- Government --}}
+            <div id="government" hidden>
 
-            <label for="birthDate"><b>Birth Date: </b></label>
-            <input type="text" placeholder="Enter The Birth Date" name="birth_date" required>
+                <label for="govOrgName"><b>Gov Org Name: </b></label>
+                <input type="text" placeholder="Enter The Org Name" name="gov_org_name" required>
 
-             <label for="doctorId"><b>Reg No: </b></label>
-            <input type="text" placeholder="Enter The Registration Number: " name="doctor_id" required>
-
-            <label for="address"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The Address" name="address_line" required>
-
-            <label for="state"><b>State: </b></label>
-            <input type="text" placeholder="Enter The State" name="state" required>
-
-            <label for="district"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The District" name="district" required>
-
-            <label for="village"><b>Address: </b></label>
-            <input type="text" placeholder="Enter The Village" name="village" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit">Register</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
+                <label for="contact"><b>Contact: </b></label>
+                <input type="text" placeholder="Enter The Contact" name="contactGov" required>
 
 
+            </div>
+            {{!-- Dairy --}}
+            <div id="dairy" hidden>
+                <label for="orgName"><b>Org Name:</b></label>
+                <input type="text" placeholder="Enter Org Name: " name="org_name" required>
+
+            </div>
+            {{!-- veteraniaran --}}
+            <div id="veteraniaran" hidden>
+                <label for="village"><b>Village: </b></label>
+                <input type="text" placeholder="Enter The Village" name="villageVet" required>
+
+                <label for="uid"><b>UID</b></label>
+                <input type="text" placeholder="Enter UID" name="UIDVet" required>
+
+                <label for="birthDate"><b>Birth Date: </b></label>
+                <input type="text" placeholder="Enter The Birth Date" name="birth_date_vet" required>
+
+                <label for="doctorId"><b>Reg No: </b></label>
+                <input type="text" placeholder="Enter The Registration Number: " name="doctor_id" required>
+                <label for="contact"><b>Contact: </b></label>
+                <input type="text" placeholder="Enter The Contact" name="contactVet" required>
+
+            </div>
 
 
+            <div style="background-color:#f1f1f1">
+                <button type="submit">Register</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+                <a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+            <label id="failureMessage"> {{error}}</label>
+    </div>
 
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
-    </form>
-    <label id="failureMessage"> {{error}}</label>
+        </form>
 </body>
 
 </html>

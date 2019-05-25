@@ -10,14 +10,14 @@ const addFarmer = (req, id) => {
     return new Promise((resolve, reject) => {
         let data = {
             userId: id,
-            UID: req.body.UID,
+            UID: req.body.UIDFarmer,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             address_line: req.body.address_line,
             state: req.body.state,
             district: req.body.district,
-            village: req.body.village,
-            birth_date: req.body.birth_date
+            village: req.body.villageFarmer,
+            birth_date: req.body.birth_date_farmer
         };
 
         db.mysqlConnection().then(connection => {

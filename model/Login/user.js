@@ -124,6 +124,19 @@ const getUserDetails = (req) => {
     })
 };
 
+const deleteIncompleteRegistration = (id) => {
+    return new Promise((resolve, reject) => {
+        db.mysqlConnection().then(connection => {
+            connection.query(userSql.delete, [id], function (error, results, fields) {
+
+                resolve(true);
+            });
+            connection.release();
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+};
 
 
 //TODO
@@ -138,5 +151,6 @@ module.exports = {
     getUserPassword,
     storeUserDetails,
     isDuplicateEmail,
-    getUserDetails
+    getUserDetails,
+    deleteIncompleteRegistration
 };

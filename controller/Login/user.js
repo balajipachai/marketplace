@@ -51,21 +51,23 @@ const login = (req, res) => {
  * @param {*} res
  */
 const register = (req, res) => {
+    var ID ;
     LoginModel.isDuplicateEmail(req.body.email).then((valid)=> {
         return Ethereum.createAccount(req.body).then((account)=> {
             return LoginModel.storeUserDetails(req, account).then((id)=> {
+                ID = id;
                 switch(req.body.userTypeId) {
-                    case 1: return FarmerModel.addFarmer(req, id).then((result)=> {
-                        res.send(Response.success(ResponseMessage.Register.success));
+                    case "1": return FarmerModel.addFarmer(req, id).then((result)=> {
+                        res.render('login/login', Response.success(ResponseMessage.Register.success));
                     });
-                    case 2:return DairyModel.addDairyCompany(req, id).then((result)=> {
-                        res.send(Response.success(ResponseMessage.Register.success));
+                    case "2":return DairyModel.addDairyCompany(req, id).then((result)=> {
+                        res.render('login/login',Response.success(ResponseMessage.Register.success));
                     });
-                    case 3:return VeterinariansModel.addVeterinarian(req, id).then((result)=> {
-                        res.send(Response.success(ResponseMessage.Register.success));
+                    case "3":return VeterinariansModel.addVeterinarian(req, id).then((result)=> {
+                        res.render('login/login',Response.success(ResponseMessage.Register.success));
                     });
-                    case 4:return GovernmentModel.addGovernment(req, id).then((result)=> {
-                        res.send(Response.success(ResponseMessage.Register.success));
+                    case "4":return GovernmentModel.addGovernment(req, id).then((result)=> {
+                        res.render('login/login',Response.success(ResponseMessage.Register.success));
                     })
                 }
 
@@ -73,7 +75,15 @@ const register = (req, res) => {
         })
 
     }).catch((error)=> {
-        res.send(Response.failure(error));
+
+        // if(ID){
+        //     LoginModel.deleteIncompleteRegistration(ID).then(result=> {
+
+        //     }).catch(error=> {
+
+        //     })
+        // }
+        res.render('login/register',Response.failure(error));
     })
 };
 
