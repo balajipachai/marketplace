@@ -1,19 +1,19 @@
 const db = require('../../helper/mysql');
-const userSql = require('../../migrations/query/user');
+const userSql = require('../../database/migrations/query/user');
 const uuidv4 = require('uuid/v4');
 const async = require('async');
 const bcrypt = require('bcrypt');
 const constants = require('../../constants.json').bcrypt;
-const farmerSql = require('../../migrations/query/farmer');
-const governmentSql = require('../../migrations/query/government');
-const diaryOrganisationSql = require('../../migrations/query/dairy');
-const veterinarianSql = require('../../migrations/query/veterinarian');
+const farmerSql = require('../../database/migrations/query/farmer');
+const governmentSql = require('../../database/migrations/query/government');
+const diaryOrganisationSql = require('../../database/migrations/query/dairy');
+const veterinarianSql = require('../../database/migrations/query/veterinarian');
 
 
 /**
  * Function will return password of user if email exists in database
- * @param {object} req 
- * @param {function} cb 
+ * @param {object} req
+ * @param {function} cb
  */
 const getUserPassword = (req) => {
     return new Promise((resolve, reject) => {
@@ -31,21 +31,21 @@ const getUserPassword = (req) => {
     }).catch((error) => {
         reject(error);
     });
-}
+};
 
 /**
  * Validate user password
- * @param {string} password 
- * @param {string} dbpassword 
+ * @param {string} password
+ * @param {string} dbpassword
  */
 const validatePassword = (password, dbpassword) => {
     return bcrypt.compareSync(password, dbpassword);
-}
+};
 
 /**
  * Store user details in database when user register for the application
- * @param {object} req 
- * @param {function} cb 
+ * @param {object} req
+ * @param {function} cb
  */
 const storeUserDetails = (req, account) => {
     return new Promise((resolve, reject) => {
@@ -56,7 +56,7 @@ const storeUserDetails = (req, account) => {
                 email: req.body.email,
                 userType: req.body.userTypeId,
                 ethereum_account: account
-            }
+            };
             connection.query(userSql.insertIntoUser, data, function (error, results, fields) {
                 if (!error) {
                     resolve(data.id);
@@ -70,11 +70,11 @@ const storeUserDetails = (req, account) => {
             reject(error);
         });
     });
-}
+};
 
 /**
  * Function to check whether email already used or not
- * @param {string} email 
+ * @param {string} email
  */
 const isDuplicateEmail = (email) => {
     return new Promise((resolve, reject) => {
@@ -96,11 +96,11 @@ const isDuplicateEmail = (email) => {
             reject(error);
         });
     })
-}
+};
 
 /**
  * Returns encrypted password
- * @param {string} password 
+ * @param {string} password
  */
 const getEncryptedHash = (password) => {
     return bcrypt.hashSync(password, constants.saltRounds);
@@ -122,7 +122,7 @@ const getUserDetails = (req) => {
             reject(error);
         });
     })
-}
+};
 
 
 
@@ -139,4 +139,4 @@ module.exports = {
     storeUserDetails,
     isDuplicateEmail,
     getUserDetails
-}
+};

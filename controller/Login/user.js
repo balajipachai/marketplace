@@ -9,8 +9,8 @@ const VeterinariansModel = require('../../model/Veterinarians/index');
 const GovernmentModel = require('../../model/Government/index');
 /**
  * Function to validate user
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 const login = (req, res) => {
     LoginModel.getUserPassword(req).then((password) => {
@@ -27,12 +27,12 @@ const login = (req, res) => {
     }).catch((error)=> {
         res.send(Response.failure(ResponseMessage.Login.invalidEmail));
     })
-}
+};
 
 /**
  * Function to register into the application
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 const register = (req, res) => {
     LoginModel.isDuplicateEmail(req.body.email).then((valid)=> {
@@ -41,27 +41,27 @@ const register = (req, res) => {
                 switch(req.body.userTypeId) {
                     case 1: return FarmerModel.addFarmer(req, id).then((result)=> {
                         res.send(Response.success(ResponseMessage.Register.success));
-                    })
+                    });
                     case 2:return DairyModel.addDairyCompany(req, id).then((result)=> {
                         res.send(Response.success(ResponseMessage.Register.success));
-                    })
+                    });
                     case 3:return VeterinariansModel.addVeterinarian(req, id).then((result)=> {
                         res.send(Response.success(ResponseMessage.Register.success));
-                    })
+                    });
                     case 4:return GovernmentModel.addGovernment(req, id).then((result)=> {
                         res.send(Response.success(ResponseMessage.Register.success));
                     })
                 }
-                
+
             })
         })
-            
+
     }).catch((error)=> {
         res.send(Response.failure(error));
     })
-}
+};
 
 module.exports = {
     login,
     register
-}
+};

@@ -8,4 +8,4 @@ module.exports = {
         success: "User is created successfully",
         error: "Error in user creation"
     }
-}
+};
