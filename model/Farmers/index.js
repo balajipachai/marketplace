@@ -1,14 +1,14 @@
 const db = require('../../helper/mysql');
-const farmerSql = require('../../migrations/query/farmer');
+const farmerSql = require('../../database/migrations/query/farmer');
 
 /**
  * Function to add farmer details into the database
- * @param {Object} req 
- * @param {string} id 
+ * @param {Object} req
+ * @param {string} id
  */
 const addFarmer = (req, id) => {
     return new Promise((resolve, reject) => {
-        var data = {
+        let data = {
             userId: id,
             UID: req.body.UID,
             first_name: req.body.first_name,
@@ -18,7 +18,7 @@ const addFarmer = (req, id) => {
             district: req.body.district,
             village: req.body.village,
             birth_date: req.body.birth_date
-        }
+        };
 
         db.mysqlConnection().then(connection => {
             connection.query(farmerSql.add, data, function (error, results) {
@@ -34,8 +34,8 @@ const addFarmer = (req, id) => {
             reject(error);
         });
     })
-}
+};
 
 module.exports = {
     addFarmer
-}
+};

@@ -7,7 +7,7 @@ const success = (message, token, layout) => {
         token,
         layout
     }
-}
+};
 
 const failure = (message) => {
     return {
@@ -15,7 +15,7 @@ const failure = (message) => {
         success: false,
         error: message
     }
-}
+};
 
 const invalidToken = () => {
     return {
@@ -23,9 +23,9 @@ const invalidToken = () => {
         success: false,
         error: message
     }
-}
+};
 
 module.exports = {
-    success, 
+    success,
     failure
-}
+};

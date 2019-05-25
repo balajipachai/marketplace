@@ -1,14 +1,14 @@
 const db = require('../../helper/mysql');
-const VeterinarianSql = require('../../migrations/query/veterinarian');
+const VeterinarianSql = require('../../database/migrations/query/veterinarian');
 
 /**
  * Function to add government details into the database
- * @param {Object} req 
- * @param {string} id 
+ * @param {Object} req
+ * @param {string} id
  */
 const addVeterinarian = (req, id) => {
     return new Promise((resolve, reject) => {
-        var data = {
+        let data = {
             userId: id,
             UID: req.body.UID,
             doctor_id: req.body.doctor_id,
@@ -36,8 +36,8 @@ const addVeterinarian = (req, id) => {
             reject(error);
         });
     })
-}
+};
 
 module.exports = {
     addVeterinarian
-}
+};

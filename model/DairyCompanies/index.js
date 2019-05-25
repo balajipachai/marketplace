@@ -1,14 +1,14 @@
 const db = require('../../helper/mysql');
-const dairySql = require('../../migrations/query/dairy');
+const dairySql = require('../../database/migrations/query/dairy');
 
 /**
  * Function to add dairy company details into the database
- * @param {Object} req 
- * @param {string} id 
+ * @param {Object} req
+ * @param {string} id
  */
 const addDairyCompany = (req, id) => {
     return new Promise((resolve, reject) => {
-        var data = {
+        let data = {
             userId: id,
             org_name: req.body.org_name,
             first_name: req.body.first_name,
@@ -16,7 +16,7 @@ const addDairyCompany = (req, id) => {
             address_line: req.body.address_line,
             state: req.body.state,
             district: req.body.district
-        }
+        };
 
         db.mysqlConnection().then(connection => {
             connection.query(dairySql.add, data, function (error, results) {
@@ -32,8 +32,8 @@ const addDairyCompany = (req, id) => {
             reject(error);
         });
     })
-}
+};
 
 module.exports = {
     addDairyCompany
-}
+};

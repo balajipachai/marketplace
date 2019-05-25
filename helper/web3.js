@@ -4,9 +4,9 @@ const constants = require("../constants.json");
 const log4js = require("log4js");
 const logger = log4js.getLogger("");
 
-var blockchainData = {};
+let blockchainData = {};
 
-var web3 = new Web3(new Web3.providers.HttpProvider(constants.blockchain.localBlockchain));
+let web3 = new Web3(new Web3.providers.HttpProvider(constants.blockchain.localBlockchain));
 blockchainData.web3 = web3;
 web3.eth.defaultAccount = web3.eth.accounts[0];
 

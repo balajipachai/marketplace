@@ -2,4 +2,11 @@ node_modules/
 
 #Editors
 .vscode/
+.idea/
 secret/.secret
+
+#Ethereum contract's build directory
+ethereum/build/
+
+#database.json
+database/database.json
