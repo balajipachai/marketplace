@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>       
+    
+    <label id="failureMessage"> {{error}}</label>
+    <label id="successMessage"> {{hash}}</label>
+    <h3>Search Incident</h3>
+
+    <div class="getIncidentByID">
+        <form method="get" action="/api/searchIncident">
+            {{!-- Search incident --}}
+            <input type="text" id="fname" name="search" placeholder="Enter Incident Location...">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div class="getAllIncident" hidden>
+        <form method="post" action="">
+            {{!-- Search incident --}}
+            <label for="organization_reference">Enter Incident Location</label>
+            <input type="text" id="fname" name="incidentId" placeholder="Enter Incident Location...">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <table>
+
+        {{#if data}}
+        <tr>
+            <th>Submitter Node</th>
+            <th>Type</th>
+            <th>Severity</th>
+            <th>Venue</th>
+            <th>Location</th>
+            <th>Reported On</th>
+        </tr>
+        {{#if data.length }}
+        {{#each data}}
+        <tr>
+            <td>{{this.organisationId}}</s</td> 
+            <td>{{this.crimeId}}</td>
+            <td>{{this.severityId}}</td>
+            <td>{{this.venueId}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.reportedAt}}</td>
+        </tr>
+        {{/each}}
+        {{else}}
+        <tr>
+            <td>{{data.organisationId}}</s</td> 
+            <td>{{data.crimeId}}</td>
+            <td>{{data.severityId}}</td>
+            <td>{{data.venueId}}</td>
+            <td>{{data.location}}</td>
+            <td>{{data.reportedAt}}</td>
+        </tr>
+        {{/if}}
+        {{/if}}
+    </table>
+
+</body>
+
+</html>

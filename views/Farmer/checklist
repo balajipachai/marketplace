@@ -1,0 +1,37 @@
+Add incident page - 
+
+    Cosmetic UI changes - 
+        Show full name in Submitter Node
+        Have consistent spacing between Severity, venue, location fields, child,submit button
+
+    Functional - 
+        The route should change to get incident when displaying incident details.
+
+
+Get incident page - 
+
+    Cosmetic UI changes - 
+        Get incident tab should be highlighted.
+ 
+        Display content on new lines -Successfully added incident. Transaction hash:0672ab907ac70d980369966ce2b2f5cb2c5af6d9177ec8c8c553c8bc5319efab
+        The table contains blank rows - remove it.
+
+
+Notification page - 
+
+    Cosmetic UI changes - 
+        We are only showing instructions. Show venue, type, severity and instructions in table.
+
+
+
+       
+    Functional changes:
+        Search is case sensitive - it should not be case sensitive
+        Error message is showing before search itself - No incident reported in undefin
+
+
+Seed data:
+
+    While creating users for client - 
+        use only English names 
+        standard and common password for all users - test@1234

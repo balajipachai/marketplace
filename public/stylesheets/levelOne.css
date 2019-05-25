@@ -1,0 +1,124 @@
+#FormBox {
+    overflow-y: auto;
+    padding: 20px;
+    overflow: auto;
+}
+
+
+#successMessage{
+    font-size: 18px;
+    color: #4CAF50;
+}
+
+#failureMessage {
+  font-size: 18px;
+    color: red;  
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+ select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+input[type=text], textarea, #timestamp, #reportedAt {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid grey;
+    /* border: 1px solid #ccc; */
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+#bodyPart {
+    height: 800px;
+    overflow: auto;
+}
+#centerDiv {
+    margin-top: 30px;
+}
+
+.badge {
+    position: absolute;
+    top: 5px;
+    right: 110px;
+    padding: 5px 10px;
+    border-radius: 100%;
+    background-color: red;
+    color: white;
+  }
+
+/* #BlockDisplay{
+    background-color: aliceblue;
+    border-radius: 4px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 20px;
+} */
+
+#incidentId {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#instructions {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* margin-top: -20px; */
+    /* margin:20px; */
+  
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+   th {
+    background-color: green;
+   }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
