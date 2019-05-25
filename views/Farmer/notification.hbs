@@ -1,0 +1,59 @@
+<html>
+<body>
+    <br>
+<br>
+<h3>Notifications</h3>
+    <br>
+    <table style="margin-top:20px">
+        {{#if data.userType}}
+        <tr>
+            <th>Parent</th>
+            <th>Parent Case Reference</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Severity</th>
+            <th>Venue</th>
+            <th>Instructions</th>
+            <th>Status</th>
+        </tr>
+
+        {{#each data}}
+        <tr>
+            <td>{{this.organisationId}}</td>
+            <td>{{this.organisationReference}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.crimeId}}</td>
+            <td>{{this.severityId}}</td>
+            <td>{{this.venueId}}</td>
+            <td>{{this.instructions}}</td>
+            {{#if this.flag}}
+            <td>Pending<a href="/api/addincident/{{this.incidentId}}"><button>View Incident</button></a></td>
+            {{else}}
+            <td>Completed</td>
+            {{/if}}
+        </tr>
+        {{/each}}
+        {{else}}
+        {{#if data}}
+        <tr>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Severity</th>
+            <th>Venue</th>
+            <th>Instructions</th>
+        </tr>
+        {{/if}}
+        {{#each data}}
+        <tr>
+            <td>{{this.location}}</td>
+            <td>{{this.crimeId}}</td>
+            <td>{{this.severityId}}</td>
+            <td>{{this.venueId}}</td>
+            <td>{{this.instructions}}</td>
+        </tr>
+        {{/each}}
+        {{/if}}
+    </table>
+</body>
+
+</html>

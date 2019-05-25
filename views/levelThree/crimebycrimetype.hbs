@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Incident Report"
+	},
+	axisY: {
+		title: "Incident count"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "Incident type",
+		dataPoints: [      
+			{ y: {{data.crime.sex}}, label: "Sex" },
+			{ y: {{data.crime.labourForced}},  label: "Labour Forced" },
+			{ y: {{data.crime.children}},  label: "Children" },
+			{ y: {{data.crime.domesticServitude}},  label: "Domestic Servitude" },
+			{ y: {{data.crime.organHarvesting}},  label: "Organ Harvesting" },
+			{ y: {{data.crime.Miscellaneous}}, label: "Miscellaneous" },
+			{ y: {{data.crime.unknown}},  label: "Other" }
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body style="margin-top:50px">
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

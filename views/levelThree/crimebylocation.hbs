@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: " Incident Report"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: {{data.serverityArray.high}}, label: "High"},
+			{y: {{data.serverityArray.low}}, label: "Low"},
+			{y: {{data.serverityArray.medium}}, label: "Medium"}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body style="margin-top:20px">
+    <form action="/api/getIncidentByLocation" method="get">
+            <input type="text" id="fname" name="location" placeholder="Enter location ...">
+            <input type="submit" value="Submit">
+    </form>
+    {{#if data}}
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    {{/if}}
+    <label id="failureMessage"> {{error}}</label>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

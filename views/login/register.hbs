@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        form {
+            border: 3px solid #f1f1f1;
+            width: 420px;
+            margin: 0 auto;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+            width: 100px;
+            border-radius: 100px;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        #failureMessage {
+            font-size: 18px;
+            color: red;
+        }
+
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $( "input" ).on( "click", function() {
+            var radioValue = $("input[name='userTypeId']:checked").val();
+            console.log("hiiiiiiiiiiiiii", radioValue, typeof(radioValue))
+            switch (radioValue) {
+                case "1":
+                    $("#farmer").show();
+                    $("#government").hide();
+                    $("#veteraniaran").hide();
+                    $("#dairy").hide();
+                    break;
+                case "2":
+                    $("#farmer").hide();
+                    $("#government").hide();
+                    $("#veteraniaran").hide();
+                    $("#dairy").show();
+                    break;
+                case "3":
+                    $("#farmer").hide();
+                    $("#government").hide();
+                    $("#veteraniaran").show();
+                    $("#dairy").hide();
+                    break;
+                case "4": $("#farmer").hide();
+                    $("#government").show();
+                    $("#veteraniaran").hide();
+                    $("#dairy").hide();
+                    break;
+            }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+
+
+    <form action="/user/login" method="POST">
+
+
+        <div class="imgcontainer">
+            <img src="/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+
+
+        <div class='radio'>
+            Farmer<input type="radio" name="userTypeId" value=1>
+            Veteraniaran<input type="radio" name="userTypeId" value=3>
+            Dairy Company<input type="radio" name="userTypeId" value=2>
+            Government<input type="radio" name="userTypeId" value=4>
+        </div>
+
+{{!-- Farmer --}}
+        <div class="container" id="farmer">
+            <label for="uname"><b>Email</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Register</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+{{!-- Government --}}
+        <div class="container" id="government" hidden>
+            <label for="uname"><b>Email</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Register</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+{{!-- Dairy --}}
+        <div class="container" id="dairy" hidden>
+            <label for="uname"><b>Email</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Register</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+{{!-- veteraniaran --}}
+        <div class="container" id="veteraniaran" hidden>
+            <label for="uname"><b>Email</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Register</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+
+
+
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+    <label id="failureMessage"> {{error}}</label>
+</body>
+
+</html>
