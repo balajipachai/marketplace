@@ -133,7 +133,7 @@
 
 
         <div class='radio'>
-            Farmer<input type="radio" name="userTypeId" value=1>
+            Farmer<input type="radio" name="userTypeId" value=1 checked>
             Veteraniaran<input type="radio" name="userTypeId" value=3>
             Dairy Company<input type="radio" name="userTypeId" value=2>
             Government<input type="radio" name="userTypeId" value=4>
@@ -141,6 +141,30 @@
 
 {{!-- Farmer --}}
         <div class="container" id="farmer">
+            <label for="uid"><b>UID</b></label>
+            <input type="text" placeholder="Enter UID" name="UID" required>
+
+            <label for="firstName"><b>First Name: </b></label>
+            <input type="text" placeholder="Enter The First Name" name="first_name" required>
+
+            <label for="lastName"><b>Last Name: </b></label>
+            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
+
+            <label for="birthDate"><b>Birth Date: </b></label>
+            <input type="text" placeholder="Enter The Birth Date" name="birth_date" required>
+
+            <label for="address"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The Address" name="address_line" required>
+
+            <label for="state"><b>State: </b></label>
+            <input type="text" placeholder="Enter The State" name="state" required>
+
+            <label for="district"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The District" name="district" required>
+
+            <label for="village"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The Village" name="village" required>
+
             <label for="uname"><b>Email</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
 
@@ -154,17 +178,26 @@
         </div>
 {{!-- Government --}}
         <div class="container" id="government" hidden>
-            <label for="uname"><b>Email</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+    <label for="firstName"><b>First Name: </b></label>
+            <input type="text" placeholder="Enter The First Name" name="first_name" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="lastName"><b>Last Name: </b></label>
+            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="govOrgName"><b>Gov Org Name: </b></label>
+            <input type="text" placeholder="Enter The Org Name" name="gov_org_name" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="contact"><b>Contact: </b></label>
+            <input type="text" placeholder="Enter The Contact" name="contact" required>
+
+            <label for="address"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The Address" name="address_line" required>
+
+            <label for="state"><b>State: </b></label>
+            <input type="text" placeholder="Enter The State" name="state" required>
+
+            <label for="district"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The District" name="district" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
@@ -176,12 +209,23 @@
         </div>
 {{!-- Dairy --}}
         <div class="container" id="dairy" hidden>
-            <label for="uname"><b>Email</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+            <label for="orgName"><b>Org Name:</b></label>
+            <input type="text" placeholder="Enter Org Name: " name="org_name" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="firstName"><b>First Name: </b></label>
+            <input type="text" placeholder="Enter The First Name" name="first_name" required>
 
+            <label for="lastName"><b>Last Name: </b></label>
+            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
+
+            <label for="address"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The Address" name="address_line" required>
+
+            <label for="state"><b>State: </b></label>
+            <input type="text" placeholder="Enter The State" name="state" required>
+
+            <label for="district"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The District" name="district" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
@@ -193,14 +237,32 @@
         </div>
 {{!-- veteraniaran --}}
         <div class="container" id="veteraniaran" hidden>
-            <label for="uname"><b>Email</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+                <label for="uid"><b>UID</b></label>
+            <input type="text" placeholder="Enter UID" name="UID" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="firstName"><b>First Name: </b></label>
+            <input type="text" placeholder="Enter The First Name" name="first_name" required>
 
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
+            <label for="lastName"><b>Last Name: </b></label>
+            <input type="text" placeholder="Enter The Last Name" name="last_name" required>
+
+            <label for="birthDate"><b>Birth Date: </b></label>
+            <input type="text" placeholder="Enter The Birth Date" name="birth_date" required>
+
+             <label for="doctorId"><b>Reg No: </b></label>
+            <input type="text" placeholder="Enter The Registration Number: " name="doctor_id" required>
+
+            <label for="address"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The Address" name="address_line" required>
+
+            <label for="state"><b>State: </b></label>
+            <input type="text" placeholder="Enter The State" name="state" required>
+
+            <label for="district"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The District" name="district" required>
+
+            <label for="village"><b>Address: </b></label>
+            <input type="text" placeholder="Enter The Village" name="village" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
