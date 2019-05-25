@@ -27,10 +27,10 @@ const getUserPassword = (req) => {
                 }
             });
             connection.release();
-        })
-    }).catch((error) => {
-        reject(error);
-    });
+        }).catch((error) => {
+            reject(error);
+        });
+    })
 }
 
 /**

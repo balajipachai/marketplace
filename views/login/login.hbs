@@ -35,6 +35,12 @@ button:hover {
   background-color: #f44336;
 }
 
+.registerButton {
+   width: auto;
+  padding: 10px 18px;
+  background-color: green;
+}
+
 .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
@@ -75,7 +81,7 @@ span.psw {
 
 
 
-<form action="/user/login" method="POST">
+<form action="/users/login" method="POST">
   
   
   <div class="imgcontainer">
@@ -84,7 +90,7 @@ span.psw {
 
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+    <input type="text" placeholder="Enter email" name="email" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
@@ -97,9 +103,12 @@ span.psw {
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
+    <a href="/register"><button type="button" class="registerButton">Register</button>
+</a>
     <span class="psw">Forgot <a href="#">password?</a></span>
+
   </div>
+  <label id="failureMessage"> {{error}}</label>
 </form>
-<label id="failureMessage"> {{error}}</label>
 </body>
 </html>

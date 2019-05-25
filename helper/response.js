@@ -1,10 +1,11 @@
-const success = (message, token) => {
+const success = (message, token, layout) => {
     return {
         statusCode: 200,
         message,
         success: true,
         error: '',
-        token
+        token,
+        layout
     }
 }
 

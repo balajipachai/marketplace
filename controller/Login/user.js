@@ -14,18 +14,34 @@ const GovernmentModel = require('../../model/Government/index');
  */
 const login = (req, res) => {
     LoginModel.getUserPassword(req).then((password) => {
-        if(LoginModel.validatePassword(req.body.email, password)){
+        if(LoginModel.validatePassword(req.body.password, password)){
             return LoginModel.getUserDetails(req).then((user)=> {
                 return JWT.createToken(user).then((token)=> {
-                    res.send(Response.success(ResponseMessage.Login.success, token));
+                    var layout = "farmer";
+                    var homePage = "Farmer/home.hbs"
+                    switch(user.userType) {
+                      case 1: layout = "farmer";
+                        homePage = "Farmer/home.hbs"
+                        break;
+                      case 2: layout = "dairy";
+                        homePage = "Dairy/home.hbs"
+                        break;
+                      case 3: layout = "veterinarian";
+                        homePage = "Veterinarian/home.hbs"
+                        break;
+                      case 4: layout = "government";
+                        homePage = "Government/home.hbs"
+
+                    }
+                    res.render(homePage, Response.success(ResponseMessage.Login.success, token, layout));
                 })
             })
         }
         else {
-            res.send(Response.failure(ResponseMessage.Login.invalidPassword));
+            res.render('login/login', Response.failure(ResponseMessage.Login.invalidPassword));
         }
     }).catch((error)=> {
-        res.send(Response.failure(ResponseMessage.Login.invalidEmail));
+        res.render('login/login', Response.failure(error));
     })
 }
 
